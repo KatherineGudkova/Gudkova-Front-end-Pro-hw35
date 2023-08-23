@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap');
+
+body {
+    font-family: 'Philosopher', sans-serif;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 30% 30% 40%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category,
+.product {
+    line-height: 30px;
+    border: solid 1px #fff;
+    background-color: #e0e0e0;
+    padding-left: 10px;
+}
+
+#productInfo {
+    display: flex;
+    justify-content: center;
+}
+
+.information {
+    width: 100%;
+    border: solid 1px #fff;
+    background-color: #e0e0e0;
+}
+
+.category:active,
+.product:active {
+    background-color: #f0f0f0;
+}
+
+.product-name {
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.product-photo {
+    max-width: 90%;
+    height: auto;
+    border: solid 1px black;
+    margin: 0 5%;
+}
+
+.product-info {
+    text-align: center;
+    margin: 5px 0px 15px;
+}
+
+#buyButton {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 20px;
+    height: 30px;
+    min-width: 50%;
+    margin: 0px 25% 15px;
+    background-color: #fff;
+    border: solid 1px #000;
+}
+
+#buyButton:active {
+    background-color: #d7d7d7;
+}
+
+/* .confirmation-modal {
+    font-size: 25px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000;
+    color: #fff;
+    border: solid 2px #fff;
+    padding: 30px 30px;
+    text-align: center;
+} */
