@@ -60,6 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+
+    const orderForm = document.getElementById("orderForm");
+    const confirmOrderButton = document.getElementById("confirmOrder");
+    const orderInfo = document.getElementById("orderInfo");
+    const orderDetails = document.getElementById("orderDetails");
+    const okButton = document.getElementById("okButton");
+
     function displayProductInfo(product) {
         productInfoContainer.innerHTML = `
             <div class="information">
@@ -69,22 +76,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button id="buyButton">КУПИТИ</button>
             </div> 
         `;
+
         const buyButton = document.getElementById("buyButton");
+
         buyButton.addEventListener("click", function () {
-            showPurchaseConfirmation();
+            orderForm.style.display = "block";
+            orderInfo.style.display = "none";
+            okButton.style.display = "none";
         });
-    }
 
-//     function showPurchaseConfirmation() {
-//     const confirmationModal = document.createElement("div");
-//     confirmationModal.classList.add("confirmation-modal");
-//     confirmationModal.innerText = "ДЯКУЄМО ЗА ПОКУПКУ!";
-//     document.body.appendChild(confirmationModal);
+        confirmOrderButton.addEventListener("click", function (event) {
+            event.preventDefault();
 
-//     setTimeout(function () {
-//         document.body.removeChild(confirmationModal);
-//         productInfoContainer.innerHTML = ""; 
-//         displayProducts([]);
-//     }, 2000);
-// }
+            const fullName = document.getElementById("fullName").value;
+            const city = document.getElementById("city").value;
+            const delivery = document.getElementById("delivery").value;
+            const selectedPaymentOption = document.querySelector('input[name="payment"]:checked');
+            const payment = selectedPaymentOption ? selectedPaymentOption.value : "";
+            const quantity = document.getElementById("quantity").value;
+            const comment = document.getElementById("comment").value;
+
+            if (!fullName || !city || !delivery || !payment || !quantity) {
+            alert("Будь ласка, заповніть всі обов'язкові поля.");
+            } else {
+                
+                orderForm.style.display = "none";
+                orderInfo.style.display = "block";
+                
+                const orderInfoItems = [
+                `ПІБ покупця: ${fullName}`,
+                `Місто: ${city}`,
+                `Відділення Нової пошти: ${delivery}`,
+                `Спосіб оплати: ${payment}`,
+                `Товар: ${product.name}`,
+                `Кількість товару: ${quantity}`,
+                `Коментар: ${comment}`
+                ];
+                orderDetails.innerHTML = "";
+                
+                orderInfoItems.forEach(item => {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = item;
+                orderDetails.appendChild(paragraph);
+        });
+            }
+            okButton.style.display = "block";
+        });
+        okButton.addEventListener("click", function () {
+            orderForm.style.display = "none";
+            orderInfo.style.display = "none";
+            okButton.style.display = "none";
+            productInfoContainer.innerHTML = ""; 
+            displayProducts([]);
+        });
+    } 
 });
